@@ -1,15 +1,12 @@
 
 import { Dropbox } from "dropbox";
-
-const accessToken =
-  "rO3g09Rj-5wAAAAAAAAAAZUB5hwaMoamCrIZlhg9diCnCFdGyG5qgKueBSg5xZa5";
-
+import { accessToken } from "../tokens/dropbox_token.json";
 export class DropboxStorage implements IStorageService {
     
     dbx: any;
       
     constructor() {
-        this.authorize();
+        this.authorize();        
     }
     
     async files(query: string = '', returns: number = 10): Promise<any> {

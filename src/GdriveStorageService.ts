@@ -5,8 +5,8 @@ const { google } = require("googleapis");
 
 export class GoogleStorage implements IStorageService {
   SCOPES = ["https://www.googleapis.com/auth/drive"];
-  TOKEN_PATH = "token.json";
-  CREDENTIALS_PATH = "credentials.json";
+  TOKEN_PATH = "tokens/gdrive_token.json";
+  CREDENTIALS_PATH = "tokens/gdrive_credentials.json";
   AUTH: any;
 
   container_dir_id = '1DXpjOEfQr8HV5RviyW4w7Dp-5oPobmte';
@@ -133,42 +133,3 @@ export class GoogleStorage implements IStorageService {
     return true;
   }
 }
-
-
-
-
-// async files(query: string = '*', returns: number = 20): Promise<string[]> {
-//     let auth = this.AUTH;
-//     const drive = google.drive({ version: "v3", auth });
-//     return await drive.files.list(
-//       {
-//         pageSize: returns,
-//         // look for files in directory:
-//         // q: "'1DXpjOEfQr8HV5RviyW4w7Dp-5oPobmte' in parents",
-//         // look for folders:
-//         // q: "mimeType='application/vnd.google-apps.folder'",
-//         // look for file with name:
-//         // q: "name contains 'stub'",
-//         q: `'${this.container_dir_id}' in parents`,
-//         fields: '*',
-//         // fields: 'nextPageToken, files(id, name)',
-//         spaces: 'drive',
-//       },
-
-//       (err: any, res: any) => {
-//         if (err) return console.log("The API returned an error: " + err);
-//         const files = res.data.files;
-//         let files_list: string[] = [];
-//         if (files.length) {
-//           console.log("Files:");
-//           files.map((file: any) => {
-//             console.log(`name = ${file.name}, id = ${file.id}`);
-//             files_list.push(file.id)
-//           });
-//         return files_list;
-//         } else {
-//           console.log("No files found.");
-//           return files_list;
-//         }
-//       }
-//     );
